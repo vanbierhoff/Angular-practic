@@ -3,9 +3,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
  selector: 'input-custom',
- template: `
-  <input (onchange)="writeValue($event.value)"
-  >
+ template: ` 
+  <input  (onchange)="writeValue($event.value)" >
+
  `,
  providers: [{
   provide: NG_VALUE_ACCESSOR,
@@ -14,9 +14,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
  }]
 })
 export class inputCustom implements ControlValueAccessor {
- @Input()
+ @Input() ParentFormGroup
 
- value = 100;
+ value: string;
 
  onChange(_: any) {}
 
@@ -28,6 +28,7 @@ export class inputCustom implements ControlValueAccessor {
 
  registerOnChange(fn) {
   this.onChange = fn;
+  console.log('ввел хуйню')
  }
 
  registerOnTouched() {}

@@ -13,6 +13,7 @@ export class FormComponent implements OnInit {
   constructor(private fb :  FormBuilderService) { }
 form: FormGroup
 
+
 value;
   ngOnInit(): void {
   this.form = this.fb.createForm()

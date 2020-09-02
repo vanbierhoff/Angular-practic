@@ -1,9 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="send($event)">
   <input formControlName="login"
   >
-<input-custom formControlName="name"></input-custom>
+<input-custom  formControlName="mail"></input-custom>
   <app-accessor [ParentFormGroup]="form"></app-accessor>
   <button type="submit">send</button>
 </form>
-<input type="text" [(ngModel)]="value">
+
 
