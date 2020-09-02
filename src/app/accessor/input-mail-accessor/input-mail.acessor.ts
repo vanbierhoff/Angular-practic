@@ -1,29 +1,33 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { debounceTime, distinct, map } from 'rxjs/operators';
+import { Component, Input, forwardRef} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'input-custom',
+  selector: 'input-mail-accessor',
   template: `
     <label>
-      <input (change)="updateValue($event.target.value)"
-             [(ngModel)]="value" />
+      <input
+              [formControl]="value"
+              pInputText
+                 />
              {{ domen }}
     </label>
   `,
-    styleUrls: ['./input-custom.component.css'],
+    // styleUrls: ['./input-custom.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => inputCustom),
+      useExisting: forwardRef(() => InputMailAccessor ),
       multi: true,
     },
   ],
 })
-export class inputCustom implements ControlValueAccessor {
+export class InputMailAccessor implements ControlValueAccessor {
+
 
   @Input() domen:string;
 
-  value:string;
+  value;
   values:string;
   onChange(_: any) {}
 
@@ -37,15 +41,23 @@ export class inputCustom implements ControlValueAccessor {
 
   // устанавливаем приходящий VALUE
   writeValue(value: any) {
-    this.value = value;
-    const dom  = localStorage.getItem('domen')
-    this.domen = dom
+    this.value = new FormControl(value);
+    this.value.valueChanges.pipe(
+        distinct(),
+        debounceTime(200),
+        map(value => {
+            return value + this.domen
+        })
 
+    ).subscribe(value => this.onChange(value))
+    this.domen = "@testmail.ftpes.ru"
   }
+
+
 
     // метод выхывает сам anglular и передает fn!
   registerOnChange(fn) {
-    debugger
+
     // сохранить функцию, через которую сообщать Angular
     // об изменении значения внутри компонента
     this.onChange = fn;
@@ -53,11 +65,4 @@ export class inputCustom implements ControlValueAccessor {
 
   registerOnTouched() {}
 
-  getDomen(){
-   // если добавляем объект сначала переводим в JSON
-   // При получении объекты парсим, строчки не нужнО!
-    localStorage.setItem('domen', '@mail.rus')
-
-  }
 }
-

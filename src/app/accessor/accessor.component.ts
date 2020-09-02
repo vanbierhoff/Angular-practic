@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-accessor',
   templateUrl: './accessor.component.html',
-  styleUrls: ['./accessor.component.css']
+  // styleUrls: ['./input-custom.component.css']
 })
 export class AccessorComponent implements OnInit {
 
