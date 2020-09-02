@@ -17,9 +17,9 @@ form: FormGroup
 value;
   ngOnInit(): void {
   this.form = this.fb.createForm()
-  // setInterval(()=> {
-  //   console.log(this.form)
-  // },10000)
+  setInterval(()=> {
+    console.log(this.form)
+  },10000)
 
 }
 

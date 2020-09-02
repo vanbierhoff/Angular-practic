@@ -4,8 +4,8 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, AbstractContr
 import { AppComponent } from './app.component';
 import { HeadComponent } from './head/head.component';
 import { FormComponent } from './form/form.component';
-import { AccessorComponent } from './accessor/accessor.component';
-import { inputCustom } from './accessor/input-custom'
+import { InputMailAccessor  } from './accessor/input-mail-accessor/input-mail.acessor';
+
 
 
 
@@ -16,7 +16,7 @@ import { inputCustom } from './accessor/input-custom'
     AppComponent,
     HeadComponent,
     FormComponent,
-    inputCustom,
+    InputMailAccessor
 
   ],
   imports: [

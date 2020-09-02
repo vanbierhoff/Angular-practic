@@ -1,16 +1,16 @@
 import { debounceTime, distinct, map } from 'rxjs/operators';
 import { Component, Input, forwardRef} from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'input-mail-accessor',
   template: `
-    <label>
-      <input
+    <label [formGroup]="forms">
+      <input  
               [formControl]="value"
               pInputText
                  />
-             {{ domen }}
+           
     </label>
   `,
     // styleUrls: ['./input-custom.component.css'],
@@ -25,7 +25,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/f
 export class InputMailAccessor implements ControlValueAccessor {
 
 
-  @Input() domen:string;
+
+  @Input() forms: FormGroup;
+  @Input() controlName;
 
   value;
   values:string;
@@ -35,22 +37,24 @@ export class InputMailAccessor implements ControlValueAccessor {
     debugger;
     this.value = NewValue;
     // сообщаем angular  о новом value
-    const val = this.value + this.domen
+    const val = this.value 
     this.onChange(val);
   }
 
   // устанавливаем приходящий VALUE
   writeValue(value: any) {
-    this.value = new FormControl(value);
+    debugger
+     this.value =this.controlName
+    // this.value = new FormControl(value);
     this.value.valueChanges.pipe(
         distinct(),
         debounceTime(200),
         map(value => {
-            return value + this.domen
+            return value 
         })
 
     ).subscribe(value => this.onChange(value))
-    this.domen = "@testmail.ftpes.ru"
+ 
   }
 
 
