@@ -1,9 +1,20 @@
 <form [formGroup]="form" (ngSubmit)="send($event)">
-  <input formControlName="login"
+  <input class=" form__input form__input_margin"
+                 formControlName="login"
   >
+<<<<<<< HEAD
 <input-custom  formControlName="mail"></input-custom>
   <app-accessor [ParentFormGroup]="form"></app-accessor>
   <button type="submit">send</button>
 </form>
 
+=======
+<input-custom class="form__input form__input_margin "
+              [domen]="'@mail.ru'"
+              formControlName="mail"
+ ></input-custom>
+
+  <button type="submit">send</button>
+</form>
+>>>>>>> 64f3deb3ffc37e31b64cd24d3ddf0f10edab3dab
 

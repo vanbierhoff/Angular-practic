@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  FormBuilderService } from '../form-service/form-builder.service'
 import { FormBuilder, Form, FormGroup, FormControl,ReactiveFormsModule } from '@angular/forms';
 
@@ -10,16 +10,16 @@ import { FormBuilder, Form, FormGroup, FormControl,ReactiveFormsModule } from '@
 })
 export class FormComponent implements OnInit {
 
-  constructor(private fb :  FormBuilderService) { }
+  constructor(private fb :  FormBuilderService,) { }
 form: FormGroup
 
 
 value;
   ngOnInit(): void {
   this.form = this.fb.createForm()
-  setInterval(()=> {
-    console.log(this.form)
-  },10000)
+  // setInterval(()=> {
+  //   console.log(this.form)
+  // },10000)
 
 }
 

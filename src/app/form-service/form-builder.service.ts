@@ -7,12 +7,24 @@ export class FormBuilderService {
   constructor(private fb: FormBuilder) {}
   value: ''
   createForm() {
+    this.createForms()
   return  this.fb.group({
       name: 'MyName',
       login: '',
-      mail: '@mail.ru'
+      mail: 'rex',
+     params:  this.fb.control({id:0})
 })
 
   }
+  createForms() {
+    return  this.fb.group({
+        LOH: 'MyName',
+        login: '',
+        mail: 'rex',
+        name: 'MyName',
+       params:  this.fb.control({id:1})
+  })
+
+    }
 
 }

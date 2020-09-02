@@ -1,0 +1,24 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  border:1.5px solid aquamarine;
+}
+.form__input_margin{
+ margin: 10px 0;
+}
+
+.form__input:active{
+  outline: 0!important;
+  border:1.5px solid aquamarine;
+}
+.form__input:focus{
+  outline: 0!important;
+  border:1.5px solid aquamarine;
+}
+
+
